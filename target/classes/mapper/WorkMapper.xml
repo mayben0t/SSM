@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wx.ssm.mapper.WorkMapper">
+	<insert id="insert" parameterType="com.wx.ssm.pojo.Work" useGeneratedKeys="true">
+		INSERT INTO work(companyID,companyUserid,description) VALUES(#{companyID, jdbcType=VARCHAR},#{companyUserid, jdbcType=VARCHAR},#{description, jdbcType=VARCHAR})
+	</insert>
+	<delete id="delete" parameterType="int">
+		DELETE FROM work WHERE ID=#{ID}	
+	</delete>
+ 	<update id="update" parameterType="com.wx.ssm.pojo.Work">
+ 		UPDATE work SET companyID=#{companyID},companyUserid=#{companyUserid},description=#{description}
+ 		WHERE ID=#{ID}
+ 	</update>
+ 	<select id="selectAll" resultType="com.wx.ssm.pojo.Work">
+ 		SELECT * FROM work					
+ 	</select>
+ 	<select id="selectOne" parameterType="int" resultType="com.wx.ssm.pojo.Work">
+ 		SELECT * FROM work WHERE ID=#{ID}
+ 	</select>
+ 	<select id="selectByCompanyID" parameterType="int" resultType="com.wx.ssm.pojo.Work">
+ 		SELECT * FROM work WHERE companyID=#{companyID}
+ 	</select>
+</mapper>

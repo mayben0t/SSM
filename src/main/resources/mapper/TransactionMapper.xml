@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wx.ssm.mapper.TransactionMapper">
+	<insert id="insert" parameterType="com.wx.ssm.pojo.Transaction" useGeneratedKeys="true">
+		INSERT INTO transaction(userID,companyID,money,description,progress,userConfirm,total)
+		VALUES(#{userID},#{companyID},#{money},#{description, jdbcType=VARCHAR},#{progress},#{userConfirm},#{total})
+	</insert>
+	<delete id="delete" parameterType="int">
+		DELETE FROM transaction WHERE ID=#{ID}	
+	</delete>
+ 	<update id="update" parameterType="com.wx.ssm.pojo.Transaction">
+ 		UPDATE transaction SET userID=#{userID},companyID=#{companyID},money=#{money},description=#{description,jdbcType=VARCHAR},progress=#{progress},userConfirm=#{userConfirm},total=#{total}
+ 		WHERE ID=#{ID}
+ 	</update>
+ 	<update id="updatebyuser" parameterType="int">
+ 		UPDATE transaction SET userConfirm=#{userConfirm}
+ 		WHERE ID=#{ID}
+ 	</update>
+ 	<select id="selectAll" resultType="com.wx.ssm.pojo.Transaction">
+ 		SELECT * FROM transaction 					
+ 	</select>
+ 	<select id="selectOne" parameterType="int" resultType="com.wx.ssm.pojo.Transaction">
+ 		SELECT * FROM transaction WHERE ID=#{id}
+ 	</select>
+ 	<select id="selectTransactionByuserID" parameterType="int" resultType="com.wx.ssm.pojo.Transaction">
+ 		SELECT * FROM transaction WHERE userID=#{userid}
+ 	</select>
+ 	<select id="selectTransactionBycompanyID" parameterType="int" resultType="com.wx.ssm.pojo.Transaction">
+ 		SELECT * FROM transaction WHERE companyID=#{companyid}
+ 	</select>
+</mapper>
